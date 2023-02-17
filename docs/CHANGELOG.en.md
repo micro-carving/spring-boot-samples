@@ -3,10 +3,11 @@
 ### 🆕 Feat
 
 - add project basic framework and quick-start code of SpringBoot project
+- add project banner.txt 
 
 ### 📝 Docs
 
-- add CHANGELOG markdown doc
+- add CHANGELOG and README markdown doc
 
 # 1.0.0 (2023-02-16)
 
