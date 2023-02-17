@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.olinonee.springboot</groupId>
+    <artifactId>springboot-sample-parent</artifactId>
+    <version>${revision}</version>
+
+    <name>${project.artifactId}</name>
+    <description>父级 pom 模块</description>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>springboot-sample-bom</module>
+        <module>springboot-sample-core</module>
+        <module>springboot-sample-web</module>
+        <module>springboot-sample-data</module>
+        <module>springboot-sample-messaging</module>
+        <module>springboot-sample-io</module>
+        <module>springboot-sample-quickstart</module>
+    </modules>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+
+        <!-- 项目统一修订版本：与 springboot-sample-bom 版本保持一致 -->
+        <revision>1.0.0</revision>
+
+        <!-- 插件管理 -->
+        <maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>
+        <maven.source.plugin.version>3.2.1</maven.source.plugin.version>
+        <flatten.maven.plugin.version>1.2.7</flatten.maven.plugin.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- 引入统一的pom维护版本 -->
+            <dependency>
+                <groupId>com.olinonee.springboot</groupId>
+                <artifactId>springboot-sample-bom</artifactId>
+                <version>${revision}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+
+    </dependencies>
+
+    <!-- 使用 aliyun 的 Maven 源，提升下载速度 -->
+    <repositories>
+        <repository>
+            <id>aliyunmaven</id>
+            <name>aliyun</name>
+            <url>https://maven.aliyun.com/repository/public</url>
+        </repository>
+    </repositories>
+</project>
