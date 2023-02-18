@@ -1,3 +1,13 @@
+# 1.0.0 (2023-02-18)
+
+### 🆕 Feat
+
+- add spring boot application core feature
+
+### 📝 Docs
+
+- append to CHANGELOG and README markdown doc
+
 # 1.0.0 (2023-02-17)
 
 ### 🆕 Feat

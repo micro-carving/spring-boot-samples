@@ -9,5 +9,5 @@ spring:
     # 是否延迟初始化，默认为 false
     lazy-initialization: true
     # banner 模式：console（打印到控制台）、log（打印到日志文件）、off（关闭）
-    banner-mode: console
+#    banner-mode: console
 
