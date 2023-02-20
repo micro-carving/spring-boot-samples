@@ -1,3 +1,13 @@
+# 1.0.0 (2023-02-20)
+
+### 🆕 Feat
+
+- add spring boot application external config feature
+
+### 📝 Docs
+
+- append to CHANGELOG and README markdown doc
+
 # 1.0.0 (2023-02-18)
 
 ### 🆕 Feat

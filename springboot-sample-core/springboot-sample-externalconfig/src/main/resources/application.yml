@@ -1,0 +1,5 @@
+name: springboot
+
+spring:
+  config:
+    import: optional:/myconfig.properties

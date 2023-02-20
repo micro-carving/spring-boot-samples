@@ -16,6 +16,7 @@
 
     <modules>
         <module>springboot-sample-application</module>
+        <module>springboot-sample-externalconfig</module>
     </modules>
 
     <properties>

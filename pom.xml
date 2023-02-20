@@ -62,4 +62,29 @@
             <url>https://maven.aliyun.com/repository/public</url>
         </repository>
     </repositories>
+
+    <build>
+        <plugins>
+            <!-- 这个插件，可以将应用程序打成一个可执行的 jar 包或者 war 包-->
+            <!-- https://docs.spring.io/spring-boot/docs/2.7.8/maven-plugin/reference/htmlsingle/ -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <!-- 需要加版本号（跟 SpringBoot 版本一致），否则 idea 报红 -->
+                <version>2.7.8</version>
+            </plugin>
+        </plugins>
+    </build>
+
+    <!-- spring 官方插件仓库 -->
+    <pluginRepositories>
+        <pluginRepository>
+            <id>spring-snapshots</id>
+            <url>https://repo.spring.io/snapshot</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>spring-milestones</id>
+            <url>https://repo.spring.io/milestone</url>
+        </pluginRepository>
+    </pluginRepositories>
 </project>
