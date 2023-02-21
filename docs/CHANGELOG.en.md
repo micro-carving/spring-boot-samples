@@ -1,3 +1,9 @@
+# 1.0.0 (2023-02-21)
+
+### 📝 Docs
+
+- append to CHANGELOG and README markdown doc
+
 # 1.0.0 (2023-02-20)
 
 ### 🆕 Feat
@@ -23,7 +29,7 @@
 ### 🆕 Feat
 
 - add project basic framework and quick-start code of SpringBoot project
-- add project banner.txt 
+- add project banner.txt
 
 ### 📝 Docs
 
