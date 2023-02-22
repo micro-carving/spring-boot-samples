@@ -18,6 +18,7 @@
         <module>springboot-sample-application</module>
         <module>springboot-sample-externalconfig</module>
         <module>springboot-sample-profiles</module>
+        <module>springboot-sample-logging</module>
     </modules>
 
     <properties>
