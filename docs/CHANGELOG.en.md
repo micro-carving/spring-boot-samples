@@ -1,3 +1,13 @@
+# 1.0.0 (2023-02-22)
+
+### 🆕 Feat
+
+- add spring boot application profiles feature
+
+### 📝 Docs
+
+- add profile's README markdown doc and CHANGELOG
+
 # 1.0.0 (2023-02-21)
 
 ### 📝 Docs

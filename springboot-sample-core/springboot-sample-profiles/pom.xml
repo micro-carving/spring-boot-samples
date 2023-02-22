@@ -3,29 +3,31 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>springboot-sample-parent</artifactId>
+        <artifactId>springboot-sample-core</artifactId>
         <groupId>com.olinonee.springboot</groupId>
         <version>${revision}</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>springboot-sample-core</artifactId>
+    <artifactId>springboot-sample-profiles</artifactId>
     <name>${project.artifactId}</name>
-    <description>SpringBoot 核心聚合模块</description>
-    <packaging>pom</packaging>
-
-    <modules>
-        <module>springboot-sample-application</module>
-        <module>springboot-sample-externalconfig</module>
-        <module>springboot-sample-profiles</module>
-    </modules>
+    <description>SpringBoot 配置文件模块</description>
 
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
     </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+    </dependencies>
 </project>
