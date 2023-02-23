@@ -1,3 +1,13 @@
+# 1.0.0 (2023-02-23)
+
+### 🆕 Feat
+
+- add spring boot application logging feature
+
+### 📝 Docs
+
+- add logging's README markdown doc and CHANGELOG
+
 # 1.0.0 (2023-02-22)
 
 ### 🆕 Feat
