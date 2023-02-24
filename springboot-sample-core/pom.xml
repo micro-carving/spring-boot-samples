@@ -20,6 +20,7 @@
         <module>springboot-sample-profiles</module>
         <module>springboot-sample-logging</module>
         <module>springboot-sample-internationalization</module>
+        <module>springboot-sample-json</module>
     </modules>
 
     <properties>

@@ -3,10 +3,12 @@
 ### 🆕 Feat
 
 - add spring boot internationalization feature
+- add spring boot json feature
 
 ### 📝 Docs
 
 - add internationalization's README markdown doc and CHANGELOG
+- add json's README markdown doc and CHANGELOG
 
 # 1.0.0 (2023-02-23)
 

@@ -3,10 +3,12 @@
 ### 🆕 Feat
 
 - 新增 SpringBoot 国际化功能
+- 新增 SpringBoot JSON 功能
 
 ### 📝 Docs
 
 - 新增国际化的 README 文档说明并更新日志说明
+- 新增 JSON 的 README 文档说明并更新日志说明
 
 # 1.0.0 (2023-02-23)
 
