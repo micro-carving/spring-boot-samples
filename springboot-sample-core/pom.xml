@@ -19,6 +19,7 @@
         <module>springboot-sample-externalconfig</module>
         <module>springboot-sample-profiles</module>
         <module>springboot-sample-logging</module>
+        <module>springboot-sample-internationalization</module>
     </modules>
 
     <properties>

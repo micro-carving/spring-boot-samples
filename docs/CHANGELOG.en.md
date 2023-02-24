@@ -1,3 +1,13 @@
+# 1.0.0 (2023-02-24)
+
+### 🆕 Feat
+
+- add spring boot internationalization feature
+
+### 📝 Docs
+
+- add internationalization's README markdown doc and CHANGELOG
+
 # 1.0.0 (2023-02-23)
 
 ### 🆕 Feat
