@@ -1,0 +1,16 @@
+spring:
+  task:
+    execution:
+      pool:
+        core-size: 8
+      # 线程池中最大线程数
+        max-size: 16
+        # 队列中的容量
+        queue-capacity: 100
+        # 线程空闲时间 10s，默认为 60s
+        keep-alive: "10s"
+    scheduling:
+      pool:
+        size: 2
+
+
