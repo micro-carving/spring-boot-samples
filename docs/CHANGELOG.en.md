@@ -2,6 +2,16 @@
 
 ### 🆕 Feat
 
+- append to spring boot Task Scheduling feature
+
+### 📝 Docs
+
+- append to Task Scheduling README markdown doc and CHANGELOG
+
+# 1.0.0 (2023-02-25)
+
+### 🆕 Feat
+
 - add spring boot Task Execution and Scheduling feature
 
 ### 📝 Docs

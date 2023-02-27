@@ -534,14 +534,73 @@ public @interface Scheduled {
 ```
 
 
-| 属性                 | 描述                                                          | 示例                                            |
-|--------------------|-------------------------------------------------------------|-----------------------------------------------|
-| cron               | 一个类似 cron 的表达式，扩展了通常的UN*X定义，以包括秒、分、小时、月中的第一天、月和星期中的第一天的触发器。 | `0/5 * * * * ? ` 表示每5秒执行1次任务，从0秒开始，注意"?"后面有空格 |
-| zone               | 将解析cron表达式的时区。默认情况下，此属性为空String(即将使用服务器的本地时区)。              | Asia/Shanghai，中国默认时区                          |
-| fixedDelay         |                                                             |                                               |
-| fixedDelayString   |                                                             |                                               |
-| fixedRate          |                                                             |                                               |
-| fixedRateString    |                                                             |                                               |
-| initialDelay       |                                                             |                                               |
-| initialDelayString |                                                             |                                               |
-| timeUnit           |                                                             |                                               |
+| 属性                 | 描述                                                                                                                                                                                                                                    | 示例                                                            |
+|--------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------|
+| cron               | 一个类似 cron 的表达式，扩展了通常的 UN*X 定义，以包括秒、分、小时、月中的第一天、月和星期中的第一天的触发器                                                                                                                                                                          | `0/5 * * * * ? ` 表示每5秒执行1次任务，从0秒开始，注意"?"后面有空格                 |
+| zone               | 将解析 cron 表达式的时区。默认情况下，此属性为空 String(即将使用服务器的本地时区)                                                                                                                                                                                      | Asia/Shanghai，中国默认时区                                          |
+| fixedDelay         | 在上一次调用结束和下一次调用开始之间以固定的时间间隔执行带注解的这个方法，默认情况下，时间单位为毫秒                                                                                                                                                                                    | 5000，上一次执行完毕时间点之后5秒再执行                                        |
+| fixedDelayString   | 与 fixedDelay 相同，只是使用字符串形式。唯一不同的是支持占位符                                                                                                                                                                                                 | "5000"或者"${xxx.xxx}"，上一次执行完毕时间点之后5秒再执行                        |
+| fixedRate          | 在调用之间以固定的周期执行带注解的这个方法，默认情况下，时间单位为毫秒                                                                                                                                                                                                   | 5000，按照每5秒周期执行                                                |
+| fixedRateString    | 与 fixedRate 相同，只是使用字符串形式。唯一不同的是支持占位符                                                                                                                                                                                                  | "5000"或者"${xxx.xxx}"，按照每5秒周期执行                                |
+| initialDelay       | 在第一次执行 fixedRate 或 fixedDelay 任务之前延迟的时间单位数，默认情况下，时间单位为毫秒                                                                                                                                                                              | 5000，第一次延迟5秒，之后按照 fixedRate 或 fixedDelay 规则执行                 |
+| initialDelayString | 与 initialDelay 相同，只是使用字符串形式。唯一不同的是支持占位符                                                                                                                                                                                               | "5000"或者"${xxx.xxx}"，第一次延迟5秒，之后按照 fixedRate 或 fixedDelay 规则执行 |
+| timeUnit           | 用于 fixedDelay, fixedDelayString, fixedRate, fixedRateString, initialDelay和initialDelayString的TimeUnit。默认为 TimeUnit.MILLISECONDS。对于 cron 表达式和通过 fixedDelayString、fixedRateString 或 initialDelayString 提供的 java.time.Duration 值，该属性将被忽略 | TimeUnit.MILLISECONDS，默认为毫秒，可以自定义修改                           |
+
+**TIP**：
+
+关于 cron 表达式的使用，请参考文档 [Cron表达式详解](CRON.md)
+
+#### 基于 SchedulingConfigurer 配置器
+
+##### 新增配置类
+
+通过实现 `SchedulingConfigurer` 接口来实现自定义的任务调度器配置，代码如下例所示：
+
+```java
+@Configuration
+@EnableScheduling
+public class TaskScheduleDemoConfig implements SchedulingConfigurer {
+
+    private final Logger logger = LoggerFactory.getLogger(TaskScheduleDemoConfig.class);
+
+    @Override
+    public void configureTasks(ScheduledTaskRegistrar taskRegistrar) {
+        taskRegistrar.setTaskScheduler(getCustomizerAsyncScheduler());
+
+        taskRegistrar.addCronTask(new CronTask(() -> {
+            logger.info("[TaskScheduleDemoConfig#configureTasks$addCronTask] - 每 3 秒输出一次，当前时间为 {}", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+        }, "0/3 * * * * ? "));
+
+        taskRegistrar.addTriggerTask(new TriggerTask(() -> {
+            logger.info("[TaskScheduleDemoConfig#configureTasks$addTriggerTask] - 每 6 秒输出一次，当前时间为 {}", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+        }, triggerContext -> new CronTrigger("0/6 * * * * ? ").nextExecutionTime(triggerContext)));
+    }
+
+    /**
+     * 获取自定义异步调度器
+     *
+     * @return TaskScheduler
+     */
+    private TaskScheduler getCustomizerAsyncScheduler() {
+        final ThreadPoolTaskScheduler threadPoolTaskScheduler = new ThreadPoolTaskScheduler();
+        threadPoolTaskScheduler.setPoolSize(2);
+        threadPoolTaskScheduler.setErrorHandler(getErrorHandler());
+        threadPoolTaskScheduler.initialize();
+        return threadPoolTaskScheduler;
+    }
+
+    /**
+     * 获取错误处理器
+     *
+     * @return ErrorHandler
+     */
+    private ErrorHandler getErrorHandler() {
+        return t -> {
+            logger.warn("[TaskScheduleDemoConfig#getErrorHandler] - 执行异常");
+            logger.error("异常信息为：{} ", t.getMessage());
+        };
+    }
+}
+```
+
+这样也可以在重写的 `configureTasks` 方法跑定时任务。
