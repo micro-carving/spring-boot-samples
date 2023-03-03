@@ -1,0 +1,17 @@
+### 查询所有启动的任务
+GET {{baseUrl}}/task/queryAll
+
+### 启动定时任务（默认规则执行）
+POST {{baseUrl}}/task/start
+
+### 启动定时任务（指定规则执行）
+POST {{baseUrl}}/task/start?cronExpression={{startCronExpression}}
+
+### 停止定时任务
+POST {{baseUrl}}/task/stop?taskId={{stopTaskId}}
+
+### 重启定时任务（按照上一次执行规则执行）
+POST {{baseUrl}}/task/restart?taskId={{restartTaskId}}
+
+### 重启定时任务（按照指定规则执行）
+POST {{baseUrl}}/task/restart?taskId={{restartTaskId}}&cronExpression={{restartCronExpression}}

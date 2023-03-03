@@ -4,17 +4,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.TaskScheduler;
-import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.SchedulingConfigurer;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
-import org.springframework.scheduling.config.CronTask;
 import org.springframework.scheduling.config.ScheduledTaskRegistrar;
-import org.springframework.scheduling.config.TriggerTask;
-import org.springframework.scheduling.support.CronTrigger;
 import org.springframework.util.ErrorHandler;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * 任务调度器 demo 配置类
@@ -24,7 +17,7 @@ import java.util.Date;
  * @since 2023-02-27
  */
 @Configuration
-@EnableScheduling
+// @EnableScheduling
 public class TaskScheduleDemoConfig implements SchedulingConfigurer {
 
     private final Logger logger = LoggerFactory.getLogger(TaskScheduleDemoConfig.class);
@@ -33,13 +26,13 @@ public class TaskScheduleDemoConfig implements SchedulingConfigurer {
     public void configureTasks(ScheduledTaskRegistrar taskRegistrar) {
         taskRegistrar.setTaskScheduler(getCustomizerAsyncScheduler());
 
-        taskRegistrar.addCronTask(new CronTask(() -> {
+        /*taskRegistrar.addCronTask(new CronTask(() -> {
             logger.info("[TaskScheduleDemoConfig#configureTasks$addCronTask] - 每 3 秒输出一次，当前时间为 {}", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
         }, "0/3 * * * * ? "));
 
         taskRegistrar.addTriggerTask(new TriggerTask(() -> {
             logger.info("[TaskScheduleDemoConfig#configureTasks$addTriggerTask] - 每 6 秒输出一次，当前时间为 {}", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
-        }, triggerContext -> new CronTrigger("0/6 * * * * ? ").nextExecutionTime(triggerContext)));
+        }, triggerContext -> new CronTrigger("0/6 * * * * ? ").nextExecutionTime(triggerContext)));*/
     }
 
     /**
