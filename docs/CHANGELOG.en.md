@@ -1,3 +1,13 @@
+# 1.0.0 (2023-03-04)
+
+### 🆕 Feat
+
+- add SpringBoot testing feature
+
+### 📝 Docs
+
+- add SpringBoot testing README markdown doc and CHANGELOG
+
 # 1.0.0 (2023-03-03)
 
 ### 🆕 Feat

@@ -22,6 +22,7 @@
         <module>springboot-sample-internationalization</module>
         <module>springboot-sample-json</module>
         <module>springboot-sample-task</module>
+        <module>springboot-sample-testing</module>
     </modules>
 
     <properties>
